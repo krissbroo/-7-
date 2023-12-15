@@ -1,31 +1,44 @@
-﻿// Задача 1: Задайте значения M и N. Напишите
-// программу, которая выведет все натуральные числа
-// в промежутке от M до N. Использовать рекурсию, не
-// использовать циклы.
-// M = 1; N = 5 -> "1, 2, 3, 4, 5"
-// M = 4; N = 8 -> "4, 5, 6, 7, 8"
+﻿// Задача 3: Задайте произвольный массив. Выведете
+// его элементы, начиная с конца. Использовать
+// рекурсию, не использовать циклы.
+// [1, 2, 5, 0, 10, 34] => 34 10 0 5 2 1 
 
-int ReadInt(string str)
+int ReadInt(string text)
 {
-    System.Console.Write(str);
-    return Convert.ToInt32(Console.ReadLine());
+System.Console.Write(text);
+return Convert.ToInt32(Console.ReadLine());
 }
 
-void PrintNumbers(int M, int N)
+int[] GenerateArray(int size, int leftRange, int rightRange)
 {
-    if (M <= N ) return ;
-    {
-     Console.Write($"{M} + {N} + " ," ");
-        PrintNumbers(M+1, N);
-    }
+int[] tempArray = new int[size];
+Random rand = new Random();
+
+
+for (int i = 0; i < size; i++)
+{
+tempArray[i] = rand.Next(leftRange, rightRange + 1);
+}
+return tempArray;
+}
+
+void PrintArray(int[] array)
+{
+System.Console.WriteLine($"[{string.Join(", ", array)}]");
+}
+
+int RightArray(int [] array, int i = 0)
+{
+    if(i < array.Length / 2 && i >= 0)
+    System.Console.WriteLine(array[i], i++);
+   return  RightArray(array.Lenght - 1 - i);
+    
 }
 
 
+//---------------
 
-// -----------------------------------
-
-int M = ReadInt("Введите число M : ");
-int N = ReadInt("Введите число N : ");
-
-PrintNumbers(M, N);
-System.Console.WriteLine($"M = {M}; N = {N} => ");
+int size = ReadInt("Введите размер массива: ");
+int[] myArray = GenerateArray(size, 1, 10);
+PrintArray(myArray);
+RightArray(array);
